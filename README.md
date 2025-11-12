@@ -37,7 +37,6 @@ def upload_file(host, port, filename):
 def download_file(host, port, filename):
     request = f"GET /{filename} HTTP/1.1\r\nHost: {host}\r\n\r\n"
     response = send_request(host, port, request)
-    # Assuming the response contains the file content after the headers
     file_content = response.split('\r\n\r\n', 1)[1]
     with open(filename, 'wb') as file:
         file.write(file_content.encode())
@@ -46,11 +45,11 @@ if __name__ == "__main__":
     host = 'example.com'
     port = 80
 
-    # Upload file
+  
     upload_response = upload_file(host, port, 'example.txt')
     print("Upload response:", upload_response)
 
-    # Download file
+    
     download_file(host, port, 'example.txt')
     print("File downloaded successfully.")
 ```
